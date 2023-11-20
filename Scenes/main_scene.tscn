@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmg7hew6mopv4"]
+[gd_scene load_steps=9 format=3 uid="uid://dmg7hew6mopv4"]
 
 [ext_resource type="PackedScene" uid="uid://882w6fcmrut6" path="res://Scenes/person.tscn" id="1_2vome"]
 [ext_resource type="Script" path="res://Scripts/Container.cs" id="1_k81wu"]
 [ext_resource type="Script" path="res://Scripts/Boat.cs" id="3_gnj1m"]
+[ext_resource type="Script" path="res://Scripts/Person/Father.cs" id="3_vptdi"]
+[ext_resource type="Script" path="res://Scripts/Person/Mother.cs" id="4_hhmhl"]
+[ext_resource type="Script" path="res://Scripts/Person/Brother.cs" id="5_1bmdl"]
+[ext_resource type="Script" path="res://Scripts/Person/Sister.cs" id="6_dbo7d"]
+[ext_resource type="Script" path="res://Scripts/Person/Other.cs" id="7_4f3us"]
 
 [node name="MainScene" type="Node"]
 
@@ -10,14 +15,19 @@
 script = ExtResource("1_k81wu")
 
 [node name="Father" parent="Left" instance=ExtResource("1_2vome")]
+script = ExtResource("3_vptdi")
 
 [node name="Mother" parent="Left" instance=ExtResource("1_2vome")]
+script = ExtResource("4_hhmhl")
 
 [node name="Brother" parent="Left" instance=ExtResource("1_2vome")]
+script = ExtResource("5_1bmdl")
 
 [node name="Sister" parent="Left" instance=ExtResource("1_2vome")]
+script = ExtResource("6_dbo7d")
 
 [node name="Other" parent="Left" instance=ExtResource("1_2vome")]
+script = ExtResource("7_4f3us")
 
 [node name="Right" type="Node" parent="."]
 script = ExtResource("1_k81wu")
