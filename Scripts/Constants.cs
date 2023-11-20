@@ -15,5 +15,12 @@ public static class Constants
 		Other,
 	}
 
+	public enum GameState
+	{
+		LoadBoat,
+		MoveBoat,
+		EroScene,
+	}
+
 	public const int MAX_BOAT_CAPACITY = 2;
 }

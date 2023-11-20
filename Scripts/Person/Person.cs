@@ -9,14 +9,17 @@ public abstract partial class Person : Node2D
 
 	public virtual bool CanDriveBoat { get; }
 
+	public Container currentLocation;
+
 	public bool CanMove(Container to) => to.CanMoveIn();
 
-	public bool TryMove(Container from, Container to)
+	public bool TryMove(Container to)
 	{
 		var result = false;
 		if (to.TryMoveIn(this))
 		{
-			from.MoveOut(this);
+			currentLocation.MoveOut(this);
+			currentLocation = to;
 			result = true;
 		}
 

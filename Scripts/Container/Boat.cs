@@ -1,3 +1,4 @@
+using System.Linq;
 using static Constants;
 
 public partial class Boat : Container
@@ -14,5 +15,10 @@ public partial class Boat : Container
 		}
 
 		return result;
+	}
+
+	public bool CanMoveBoat()
+	{
+		return PeopleInContainer.Count > 0 && PeopleInContainer.Any(p => p.CanDriveBoat);
 	}
 }
