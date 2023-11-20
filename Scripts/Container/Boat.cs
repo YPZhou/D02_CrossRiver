@@ -1,15 +1,18 @@
-using Godot;
-using System;
+using static Constants;
 
 public partial class Boat : Container
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+	public override bool CanMoveIn() => PeopleInContainer.Count < MAX_BOAT_CAPACITY;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public override bool TryMoveIn(Person person)
 	{
+		var result = false;
+		if (PeopleInContainer.Count < MAX_BOAT_CAPACITY)
+		{
+			PeopleInContainer.Add(person);
+			result = true;
+		}
+
+		return result;
 	}
 }

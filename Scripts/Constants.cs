@@ -14,4 +14,6 @@ public static class Constants
 		Sister,
 		Other,
 	}
+
+	public const int MAX_BOAT_CAPACITY = 2;
 }

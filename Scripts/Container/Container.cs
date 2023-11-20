@@ -9,7 +9,20 @@ public partial class Container : Node
 		return Constraints.Any(c => c.CheckConstraintViolated(PeopleInContainer));
 	}
 
-	List<Person> PeopleInContainer { get; } = new List<Person>();
+	public virtual bool CanMoveIn() => true;
+
+	public virtual bool TryMoveIn(Person person)
+	{
+		PeopleInContainer.Add(person);
+		return true;
+	}
+
+	public void MoveOut(Person person)
+	{
+		PeopleInContainer.Remove(person);
+	}
+
+	protected List<Person> PeopleInContainer { get; } = new List<Person>();
 
 	List<IConstraint> Constraints { get; } = new List<IConstraint>()
 	{
