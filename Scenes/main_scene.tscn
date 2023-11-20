@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://dmg7hew6mopv4"]
+[gd_scene load_steps=2 format=3 uid="uid://dmg7hew6mopv4"]
+
+[ext_resource type="PackedScene" uid="uid://882w6fcmrut6" path="res://Scenes/person.tscn" id="1_2vome"]
 
 [node name="MainScene" type="Node"]
+
+[node name="Left" type="Node" parent="."]
+
+[node name="Father" parent="Left" instance=ExtResource("1_2vome")]
+
+[node name="Mother" parent="Left" instance=ExtResource("1_2vome")]
+
+[node name="Brother" parent="Left" instance=ExtResource("1_2vome")]
+
+[node name="Sister" parent="Left" instance=ExtResource("1_2vome")]
+
+[node name="Other" parent="Left" instance=ExtResource("1_2vome")]
+
+[node name="Right" type="Node" parent="."]
+
+[node name="Boat" type="Node" parent="."]
