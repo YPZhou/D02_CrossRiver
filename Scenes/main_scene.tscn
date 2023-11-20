@@ -17,18 +17,23 @@ script = ExtResource("1_t5kp2")
 script = ExtResource("1_1qmhc")
 
 [node name="Father" parent="Left" instance=ExtResource("1_2vome")]
+position = Vector2(372, 477)
 script = ExtResource("3_vptdi")
 
 [node name="Mother" parent="Left" instance=ExtResource("1_2vome")]
+position = Vector2(611, 482)
 script = ExtResource("4_hhmhl")
 
 [node name="Brother" parent="Left" instance=ExtResource("1_2vome")]
+position = Vector2(851, 484)
 script = ExtResource("5_1bmdl")
 
 [node name="Sister" parent="Left" instance=ExtResource("1_2vome")]
+position = Vector2(1095, 473)
 script = ExtResource("6_dbo7d")
 
 [node name="Other" parent="Left" instance=ExtResource("1_2vome")]
+position = Vector2(690, 723)
 script = ExtResource("7_4f3us")
 
 [node name="Right" type="Node" parent="."]
@@ -36,3 +41,16 @@ script = ExtResource("1_1qmhc")
 
 [node name="Boat" type="Node" parent="."]
 script = ExtResource("8_rmbui")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 1597.0
+offset_bottom = 251.0
