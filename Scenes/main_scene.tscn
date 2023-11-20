@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmg7hew6mopv4"]
+[gd_scene load_steps=10 format=3 uid="uid://dmg7hew6mopv4"]
 
 [ext_resource type="Script" path="res://Scripts/Container/Container.cs" id="1_1qmhc"]
 [ext_resource type="PackedScene" uid="uid://882w6fcmrut6" path="res://Scenes/person.tscn" id="1_2vome"]
+[ext_resource type="Script" path="res://Scripts/MainGame.cs" id="1_t5kp2"]
 [ext_resource type="Script" path="res://Scripts/Person/Father.cs" id="3_vptdi"]
 [ext_resource type="Script" path="res://Scripts/Person/Mother.cs" id="4_hhmhl"]
 [ext_resource type="Script" path="res://Scripts/Person/Brother.cs" id="5_1bmdl"]
@@ -10,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Container/Boat.cs" id="8_rmbui"]
 
 [node name="MainScene" type="Node"]
+script = ExtResource("1_t5kp2")
 
 [node name="Left" type="Node" parent="."]
 script = ExtResource("1_1qmhc")
