@@ -1,11 +1,16 @@
+using System;
 using Godot;
 using static Constants;
 
 public partial class MainGame : Node
 {
-	public override void _Ready()
+
+	public static MainGame Instance;
+
+	public override void _EnterTree()
 	{
 		gameState = GameState.LoadBoat;
+		Instance = this;
 	}
 
 	public override void _Process(double delta)
@@ -27,4 +32,24 @@ public partial class MainGame : Node
 	}
 
 	GameState gameState;
+	
+	
+	
+	
+	
+	// 选择人物--------------------------------begin
+	private Person selectedPerson;
+	
+	public Person SelectedPerson 
+	{
+		get => selectedPerson;
+		set
+		{
+			selectedPerson = value;
+			SelectPerson(selectedPerson);
+		}
+	}
+
+	public Action<Person> SelectPerson = delegate(Person person) {  };
+	// 选择人物----------------------------------end
 }

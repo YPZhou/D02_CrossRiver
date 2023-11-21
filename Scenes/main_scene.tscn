@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmg7hew6mopv4"]
+[gd_scene load_steps=17 format=3 uid="uid://dmg7hew6mopv4"]
 
 [ext_resource type="Script" path="res://Scripts/Container/Container.cs" id="1_1qmhc"]
 [ext_resource type="PackedScene" uid="uid://882w6fcmrut6" path="res://Scenes/person.tscn" id="1_2vome"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://babbf80ej8g63" path="res://Assets/sister_avatar.jpg" id="11_1ig4d"]
 [ext_resource type="Texture2D" uid="uid://c4hamnsft5erp" path="res://Assets/other_avatar.jpg" id="13_ll1ws"]
 [ext_resource type="Texture2D" uid="uid://c5ygalnugsraq" path="res://Assets/boat.png" id="15_k56oy"]
+[ext_resource type="Script" path="res://Scripts/UI/PersonInfo.cs" id="16_5xqfk"]
 
 [node name="MainScene" type="Node"]
 script = ExtResource("1_t5kp2")
@@ -72,16 +73,19 @@ texture = ExtResource("15_k56oy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="PersonInfo" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("TextLabel")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("16_5xqfk")
+TextLabel = NodePath("RichTextLabel")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PersonInfo"]
 layout_mode = 0
 offset_right = 1597.0
 offset_bottom = 251.0
+bbcode_enabled = true
 
 [editable path="Left/Father"]
 [editable path="Left/Mother"]
