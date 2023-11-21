@@ -1,14 +1,14 @@
 using Godot;
 using static Constants;
 
-public abstract partial class Person : Node2D
+public partial class Person : Node2D
 {
 	public virtual PersonType PersonType { get; }
 
 	public virtual Gender Gender { get; }
 
 	public virtual bool CanDriveBoat { get; }
-
+	
 	public Container currentLocation;
 
 	public bool CanMove(Container to) => to.CanMoveIn();
@@ -30,5 +30,34 @@ public abstract partial class Person : Node2D
 	public override void _Ready()
 	{
 		GD.Print("Hello World!");
+
+		if (clickArea == null)
+		{
+			return;
+		}
+
+		clickArea.InputEvent += (viewport, @event, idx) =>
+		{
+			if (@event is InputEventMouseButton {ButtonIndex: MouseButton.Left, Pressed:true})
+			{
+				GD.Print(PersonType);
+			}
+
+		};
 	}
+
+	
+	// 鼠标输入检测------------------------------------begin
+
+	
+	/// <summary>
+	/// 点击区域。
+	/// </summary>
+	[Export]
+	public Area2D clickArea;
+	
+	
+	
+	
+	// 鼠标输入检测--------------------------------------end
 }
