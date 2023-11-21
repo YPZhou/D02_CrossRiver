@@ -30,20 +30,7 @@ public partial class Person : Node2D
 	public override void _Ready()
 	{
 		GD.Print("Hello World!");
-
-		if (clickArea == null)
-		{
-			return;
-		}
-
-		clickArea.InputEvent += (viewport, @event, idx) =>
-		{
-			if (@event is InputEventMouseButton {ButtonIndex: MouseButton.Left, Pressed:true})
-			{
-				GD.Print(PersonType);
-			}
-
-		};
+		CheckClick();
 	}
 
 	
@@ -55,9 +42,29 @@ public partial class Person : Node2D
 	/// </summary>
 	[Export]
 	public Area2D clickArea;
-	
-	
-	
-	
+
+
+	void CheckClick()
+	{
+		if (clickArea == null)
+		{
+			return;
+		}
+
+		clickArea.InputEvent += (viewport, @event, idx) =>
+		{
+			if (@event is InputEventMouseButton {ButtonIndex: MouseButton.Left, Pressed:false, DoubleClick:false})
+			{
+				OnClick();
+			}
+		};
+	}
+
+	void OnClick()
+	{
+		MainGame.Instance.SelectedPerson = this;
+	}
+
+
 	// 鼠标输入检测--------------------------------------end
 }

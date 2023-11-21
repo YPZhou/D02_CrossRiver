@@ -4,7 +4,4 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>D02_CrossRiver</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\UI\" />
-  </ItemGroup>
 </Project>
