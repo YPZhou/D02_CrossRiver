@@ -30,17 +30,18 @@ public class InteractManager
         
         area2D.InputEvent += (viewport, @event, idx) =>
         {
+            // 鼠标左键乘船。
             if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Left})
             {
-                // 鼠标左键乘船。
-                if (!area2D.TryGetPerson(out var person))
+                var left = MainGame.Instance.Left;
+                // 获取点击的索引。
+                var index = left.Areas.IndexOf(area2D);
+                // 根据索引找到对应的人物.
+                if (left.TryGetPerson(index, out var person))
                 {
-                    return;
+                    // 移动到船容器。
+                    person.TryMove(MainGame.Instance.Boat);
                 }
-
-                MainGame.Instance.Left.MoveOut(person);
-                MainGame.Instance.Boat.TryMoveIn(person);
-
             }
             
             if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Right})
@@ -69,22 +70,18 @@ public class InteractManager
         {
             if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Left})
             {
-                if (!area2D.TryGetPerson(out var person))
+                
+                var boat = MainGame.Instance.Boat;
+                var index = boat.Areas.IndexOf(area2D);
+                if (boat.TryGetPerson(index, out var person))
                 {
-                    return;
+                    person.TryMove(MainGame.Instance.Boat.State == Constants.BoatState.Left
+                        ? MainGame.Instance.Left
+                        : MainGame.Instance.Right);
                 }
                 
-                MainGame.Instance.Left.MoveOut(person);
 
-                if (MainGame.Instance.Boat.State == Constants.BoatState.Left)
-                {
-                    MainGame.Instance.Left.TryMoveIn(person);
-                }
-                else
-                {
-                    MainGame.Instance.Right.TryMoveIn(person);
-                }
-
+                
             }
             
             if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Right})

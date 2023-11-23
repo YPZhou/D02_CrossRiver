@@ -18,7 +18,7 @@ public partial class Person : Node2D
 		var result = false;
 		if (to.TryMoveIn(this))
 		{
-			currentLocation.MoveOut(this);
+			currentLocation?.MoveOut(this);
 			currentLocation = to;
 			result = true;
 		}

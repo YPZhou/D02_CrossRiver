@@ -38,24 +38,12 @@ position = Vector2(229, 130)
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_23cw1")
 
-[node name="Father" parent="Left/Area1" instance=ExtResource("1_2vome")]
-script = ExtResource("3_vptdi")
-
-[node name="Icon" parent="Left/Area1/Father" index="0"]
-texture = ExtResource("5_7syxt")
-
 [node name="Area2" type="Area2D" parent="Left"]
 position = Vector2(232, 283)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Area2"]
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_23cw1")
-
-[node name="Mother" parent="Left/Area2" instance=ExtResource("1_2vome")]
-script = ExtResource("4_hhmhl")
-
-[node name="Icon" parent="Left/Area2/Mother" index="0"]
-texture = ExtResource("7_rnrvc")
 
 [node name="Area3" type="Area2D" parent="Left"]
 position = Vector2(229, 435)
@@ -64,12 +52,6 @@ position = Vector2(229, 435)
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_23cw1")
 
-[node name="Brother" parent="Left/Area3" instance=ExtResource("1_2vome")]
-script = ExtResource("5_1bmdl")
-
-[node name="Icon" parent="Left/Area3/Brother" index="0"]
-texture = ExtResource("9_etlw4")
-
 [node name="Area4" type="Area2D" parent="Left"]
 position = Vector2(232, 584)
 
@@ -77,24 +59,12 @@ position = Vector2(232, 584)
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_23cw1")
 
-[node name="Sister" parent="Left/Area4" instance=ExtResource("1_2vome")]
-script = ExtResource("6_dbo7d")
-
-[node name="Icon" parent="Left/Area4/Sister" index="0"]
-texture = ExtResource("11_1ig4d")
-
 [node name="Area5" type="Area2D" parent="Left"]
 position = Vector2(229, 743)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Area5"]
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_23cw1")
-
-[node name="Other" parent="Left/Area5" instance=ExtResource("1_2vome")]
-script = ExtResource("7_4f3us")
-
-[node name="Icon" parent="Left/Area5/Other" index="0"]
-texture = ExtResource("13_ll1ws")
 
 [node name="Right" type="Node" parent="." node_paths=PackedStringArray("Areas")]
 script = ExtResource("1_1qmhc")
@@ -157,6 +127,43 @@ position = Vector2(886, 494)
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_23cw1")
 
+[node name="People" type="Node" parent="."]
+
+[node name="Father" parent="People" instance=ExtResource("1_2vome")]
+position = Vector2(229, 130)
+script = ExtResource("3_vptdi")
+
+[node name="Icon" parent="People/Father" index="0"]
+texture = ExtResource("5_7syxt")
+
+[node name="Mother" parent="People" instance=ExtResource("1_2vome")]
+position = Vector2(232, 283)
+script = ExtResource("4_hhmhl")
+
+[node name="Icon" parent="People/Mother" index="0"]
+texture = ExtResource("7_rnrvc")
+
+[node name="Brother" parent="People" instance=ExtResource("1_2vome")]
+position = Vector2(229, 435)
+script = ExtResource("5_1bmdl")
+
+[node name="Icon" parent="People/Brother" index="0"]
+texture = ExtResource("9_etlw4")
+
+[node name="Sister" parent="People" instance=ExtResource("1_2vome")]
+position = Vector2(232, 584)
+script = ExtResource("6_dbo7d")
+
+[node name="Icon" parent="People/Sister" index="0"]
+texture = ExtResource("11_1ig4d")
+
+[node name="Other" parent="People" instance=ExtResource("1_2vome")]
+position = Vector2(229, 743)
+script = ExtResource("7_4f3us")
+
+[node name="Icon" parent="People/Other" index="0"]
+texture = ExtResource("13_ll1ws")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("PersonInfo")]
 script = ExtResource("16_8y2ri")
 PersonInfo = NodePath("PersonInfo")
@@ -195,8 +202,8 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 24
 text = "鼠标左键交互，右键查看信息"
 
-[editable path="Left/Area1/Father"]
-[editable path="Left/Area2/Mother"]
-[editable path="Left/Area3/Brother"]
-[editable path="Left/Area4/Sister"]
-[editable path="Left/Area5/Other"]
+[editable path="People/Father"]
+[editable path="People/Mother"]
+[editable path="People/Brother"]
+[editable path="People/Sister"]
+[editable path="People/Other"]

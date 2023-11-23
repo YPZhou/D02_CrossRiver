@@ -13,34 +13,18 @@ public partial class MainGame : Node
 	public Boat Boat { get; private set; }
 	[Export]
 	public Container Right { get; private set; }
-
+	
+	
 	public override void _EnterTree()
 	{
-		gameState = GameState.LoadBoat;
 		Instance = this;
-		
-		for (var i = 0; i < Left.Areas.Count; ++i)
-		{
-			var area2D = Left.Areas[i];
-			InteractManager.Instance.LoginLeftAreaInput(area2D);
+	}
 
-			if (!area2D.TryGetPerson(out var person))
-			{
-				continue;
-			}
-			person.GetParent().RemoveChild(person);
-			Left.TryMoveIn(person);
-		}
-		
-		for (var i = 0; i < Right.Areas.Count; ++i)
-		{
-			InteractManager.Instance.LoginRightAreaInput(Right.Areas[i]);
-		}
-		
-		for (var i = 0; i < Boat.Areas.Count; ++i)
-		{
-			InteractManager.Instance.LoginBoatAreaInput(Boat.Areas[i]);
-		}
+	public override void _Ready()
+	{
+		gameState = GameState.LoadBoat;
+		LoginAreasInput();
+		InitPeople();
 	}
 
 	public override void _Process(double delta)
@@ -62,6 +46,35 @@ public partial class MainGame : Node
 	}
 
 	GameState gameState;
-	
-	
+
+
+	void LoginAreasInput()
+	{
+		for (var i = 0; i < Left.Areas.Count; ++i)
+		{
+			InteractManager.Instance.LoginLeftAreaInput(Left.Areas[i]);
+		}
+		
+		for (var i = 0; i < Right.Areas.Count; ++i)
+		{
+			InteractManager.Instance.LoginRightAreaInput(Right.Areas[i]);
+		}
+		
+		for (var i = 0; i < Boat.Areas.Count; ++i)
+		{
+			InteractManager.Instance.LoginBoatAreaInput(Boat.Areas[i]);
+		}
+	}
+
+
+	void InitPeople()
+	{
+		var people = GetNode("People");
+		for (var i = 0; i < people.GetChildCount(); ++i)
+		{
+			var person = people.GetChild<Person>(i);
+			person.TryMove(Left);
+		}
+	}
+
 }
