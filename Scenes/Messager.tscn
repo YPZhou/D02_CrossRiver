@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://0d1pdqhm3w5l"]
 
-[ext_resource type="Script" path="res://Scripts/Messager.cs" id="1_75i8y"]
+[ext_resource type="Script" path="res://Scripts/UI/Messager.cs" id="1_75i8y"]
 
 [node name="Messager" type="Control" node_paths=PackedStringArray("Message")]
 layout_mode = 3

@@ -30,6 +30,9 @@ public class InteractManager
         
         area2D.InputEvent += (viewport, @event, idx) =>
         {
+            if (MainGame.Instance.Boat.State != Constants.BoatState.Left)
+                return;
+            
             // 鼠标左键乘船。
             if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Left})
             {
@@ -61,6 +64,9 @@ public class InteractManager
         
         area2D.InputEvent += (viewport, @event, idx) =>
         {
+            if (MainGame.Instance.Boat.State != Constants.BoatState.Right)
+                return;
+
             // 鼠标左键乘船。
             if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Left})
             {
