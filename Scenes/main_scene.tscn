@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmg7hew6mopv4"]
+[gd_scene load_steps=20 format=3 uid="uid://dmg7hew6mopv4"]
 
 [ext_resource type="Script" path="res://Scripts/Container/Container.cs" id="1_1qmhc"]
 [ext_resource type="PackedScene" uid="uid://882w6fcmrut6" path="res://Scenes/person.tscn" id="1_2vome"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Person/Mother.cs" id="4_hhmhl"]
 [ext_resource type="Script" path="res://Scripts/Person/Brother.cs" id="5_1bmdl"]
 [ext_resource type="Texture2D" uid="uid://cob55lvvwv0e8" path="res://Assets/father_avatar.jpg" id="5_7syxt"]
+[ext_resource type="Texture2D" uid="uid://hr5t3pykomrl" path="res://icon.svg" id="5_j4wft"]
 [ext_resource type="Script" path="res://Scripts/Person/Sister.cs" id="6_dbo7d"]
 [ext_resource type="Script" path="res://Scripts/Person/Other.cs" id="7_4f3us"]
 [ext_resource type="Texture2D" uid="uid://ddlqosxqge48a" path="res://Assets/mother_avatar.jpg" id="7_rnrvc"]
@@ -105,27 +106,38 @@ position = Vector2(1327, 753)
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_23cw1")
 
-[node name="Boat" type="Node" parent="." node_paths=PackedStringArray("Areas")]
+[node name="Boat" type="Node" parent="." node_paths=PackedStringArray("boatSprite", "Areas")]
 script = ExtResource("8_rmbui")
-Areas = [NodePath("SeatArea0"), NodePath("SeatArea1")]
+boatSprite = NodePath("BoatSprite")
+Areas = [NodePath("BoatSprite/SeatArea0"), NodePath("BoatSprite/SeatArea1"), NodePath("BoatSprite/DriveBoat")]
 
 [node name="BoatSprite" type="Sprite2D" parent="Boat"]
-position = Vector2(799, 547)
+position = Vector2(500, 547)
 texture = ExtResource("15_k56oy")
 
-[node name="SeatArea0" type="Area2D" parent="Boat"]
-position = Vector2(722, 492)
+[node name="SeatArea0" type="Area2D" parent="Boat/BoatSprite"]
+position = Vector2(-77, -55)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boat/SeatArea0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boat/BoatSprite/SeatArea0"]
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_23cw1")
 
-[node name="SeatArea1" type="Area2D" parent="Boat"]
-position = Vector2(886, 494)
+[node name="SeatArea1" type="Area2D" parent="Boat/BoatSprite"]
+position = Vector2(87, -53)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boat/SeatArea1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boat/BoatSprite/SeatArea1"]
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="DriveBoat" type="Area2D" parent="Boat/BoatSprite"]
+position = Vector2(0, 60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boat/BoatSprite/DriveBoat"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Boat/BoatSprite/DriveBoat"]
+texture = ExtResource("5_j4wft")
 
 [node name="People" type="Node" parent="."]
 
