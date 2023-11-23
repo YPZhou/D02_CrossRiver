@@ -1,6 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 using System.Linq;
+using Godot.Collections;
 
 public partial class Container : Node
 {
@@ -13,8 +14,12 @@ public partial class Container : Node
 
 	public virtual bool TryMoveIn(Person person)
 	{
-		PeopleInContainer.Add(person);
-		return true;
+		var result = PeopleInContainer.Count < Capacity;
+		if (result)
+		{
+			PeopleInContainer.Add(person);
+		}
+		return result;
 	}
 
 	public void MoveOut(Person person)
@@ -32,4 +37,9 @@ public partial class Container : Node
 		new SisterConstraint(),
 		new OtherConstraint(),
 	};
+
+	[Export]
+	public Array<Area2D> Areas { get; private set; }
+
+	public int Capacity => Areas.Count;
 }

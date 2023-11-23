@@ -7,10 +7,32 @@ public partial class MainGame : Node
 
 	public static MainGame Instance;
 
+	[Export]
+	public Container Left { get; private set; }
+	[Export]
+	public Container Boat { get; private set; }
+	[Export]
+	public Container Right { get; private set; }
+
 	public override void _EnterTree()
 	{
 		gameState = GameState.LoadBoat;
 		Instance = this;
+		
+		for (var i = 0; i < Left.Areas.Count; ++i)
+		{
+			InteractManager.Instance.LoginLeftAreaInput(Left.Areas[i]);
+		}
+		
+		for (var i = 0; i < Right.Areas.Count; ++i)
+		{
+			InteractManager.Instance.LoginRightAreaInput(Right.Areas[i]);
+		}
+		
+		for (var i = 0; i < Boat.Areas.Count; ++i)
+		{
+			InteractManager.Instance.LoginBoatAreaInput(Boat.Areas[i]);
+		}
 	}
 
 	public override void _Process(double delta)
@@ -34,22 +56,4 @@ public partial class MainGame : Node
 	GameState gameState;
 	
 	
-	
-	
-	
-	// 选择人物--------------------------------begin
-	private Person selectedPerson;
-	
-	public Person SelectedPerson 
-	{
-		get => selectedPerson;
-		set
-		{
-			selectedPerson = value;
-			SelectPerson(selectedPerson);
-		}
-	}
-
-	public Action<Person> SelectPerson = delegate(Person person) {  };
-	// 选择人物----------------------------------end
 }

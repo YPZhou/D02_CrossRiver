@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmg7hew6mopv4"]
+[gd_scene load_steps=19 format=3 uid="uid://dmg7hew6mopv4"]
 
 [ext_resource type="Script" path="res://Scripts/Container/Container.cs" id="1_1qmhc"]
 [ext_resource type="PackedScene" uid="uid://882w6fcmrut6" path="res://Scenes/person.tscn" id="1_2vome"]
@@ -16,68 +16,159 @@
 [ext_resource type="Texture2D" uid="uid://c4hamnsft5erp" path="res://Assets/other_avatar.jpg" id="13_ll1ws"]
 [ext_resource type="Texture2D" uid="uid://c5ygalnugsraq" path="res://Assets/boat.png" id="15_k56oy"]
 [ext_resource type="Script" path="res://Scripts/UI/PersonInfo.cs" id="16_5xqfk"]
+[ext_resource type="Script" path="res://Scripts/UIManager.cs" id="16_8y2ri"]
 
-[node name="MainScene" type="Node"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23cw1"]
+size = Vector2(128, 128)
+
+[node name="MainScene" type="Node" node_paths=PackedStringArray("Left", "Boat", "Right")]
 script = ExtResource("1_t5kp2")
+Left = NodePath("Left")
+Boat = NodePath("Boat")
+Right = NodePath("Right")
 
-[node name="Left" type="Node" parent="."]
+[node name="Left" type="Node" parent="." node_paths=PackedStringArray("Areas")]
 script = ExtResource("1_1qmhc")
+Areas = [NodePath("Area1"), NodePath("Area2"), NodePath("Area3"), NodePath("Area4"), NodePath("Area5")]
 
-[node name="Father" parent="Left" instance=ExtResource("1_2vome")]
-position = Vector2(372, 832)
+[node name="Area1" type="Area2D" parent="Left"]
+position = Vector2(229, 130)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Area1"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="Father" parent="Left/Area1" instance=ExtResource("1_2vome")]
 script = ExtResource("3_vptdi")
 
-[node name="Icon" parent="Left/Father" index="0"]
+[node name="Icon" parent="Left/Area1/Father" index="0"]
 texture = ExtResource("5_7syxt")
 
-[node name="Mother" parent="Left" instance=ExtResource("1_2vome")]
-position = Vector2(581, 830)
+[node name="Area2" type="Area2D" parent="Left"]
+position = Vector2(232, 283)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Area2"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="Mother" parent="Left/Area2" instance=ExtResource("1_2vome")]
 script = ExtResource("4_hhmhl")
 
-[node name="Icon" parent="Left/Mother" index="0"]
+[node name="Icon" parent="Left/Area2/Mother" index="0"]
 texture = ExtResource("7_rnrvc")
 
-[node name="Brother" parent="Left" instance=ExtResource("1_2vome")]
-position = Vector2(807, 829)
+[node name="Area3" type="Area2D" parent="Left"]
+position = Vector2(229, 435)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Area3"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="Brother" parent="Left/Area3" instance=ExtResource("1_2vome")]
 script = ExtResource("5_1bmdl")
 
-[node name="Icon" parent="Left/Brother" index="0"]
+[node name="Icon" parent="Left/Area3/Brother" index="0"]
 texture = ExtResource("9_etlw4")
 
-[node name="Sister" parent="Left" instance=ExtResource("1_2vome")]
-position = Vector2(1011, 827)
+[node name="Area4" type="Area2D" parent="Left"]
+position = Vector2(232, 584)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Area4"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="Sister" parent="Left/Area4" instance=ExtResource("1_2vome")]
 script = ExtResource("6_dbo7d")
 
-[node name="Icon" parent="Left/Sister" index="0"]
+[node name="Icon" parent="Left/Area4/Sister" index="0"]
 texture = ExtResource("11_1ig4d")
 
-[node name="Other" parent="Left" instance=ExtResource("1_2vome")]
-position = Vector2(1212, 828)
+[node name="Area5" type="Area2D" parent="Left"]
+position = Vector2(229, 743)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Area5"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="Other" parent="Left/Area5" instance=ExtResource("1_2vome")]
 script = ExtResource("7_4f3us")
 
-[node name="Icon" parent="Left/Other" index="0"]
+[node name="Icon" parent="Left/Area5/Other" index="0"]
 texture = ExtResource("13_ll1ws")
 
-[node name="CollisionShape2D" parent="Left/Other/Area2D" index="0"]
-position = Vector2(0, 0)
-
-[node name="Right" type="Node" parent="."]
+[node name="Right" type="Node" parent="." node_paths=PackedStringArray("Areas")]
 script = ExtResource("1_1qmhc")
+Areas = [NodePath("Area1"), NodePath("Area2"), NodePath("Area3"), NodePath("Area4"), NodePath("Area5")]
 
-[node name="Boat" type="Node" parent="."]
+[node name="Area1" type="Area2D" parent="Right"]
+position = Vector2(1327, 140)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Area1"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="Area2" type="Area2D" parent="Right"]
+position = Vector2(1330, 293)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Area2"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="Area3" type="Area2D" parent="Right"]
+position = Vector2(1327, 445)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Area3"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="Area4" type="Area2D" parent="Right"]
+position = Vector2(1330, 594)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Area4"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="Area5" type="Area2D" parent="Right"]
+position = Vector2(1327, 753)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Area5"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="Boat" type="Node" parent="." node_paths=PackedStringArray("Areas")]
 script = ExtResource("8_rmbui")
+Areas = [NodePath("SeatArea0"), NodePath("SeatArea1")]
 
 [node name="BoatSprite" type="Sprite2D" parent="Boat"]
 position = Vector2(799, 547)
 texture = ExtResource("15_k56oy")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="SeatArea0" type="Area2D" parent="Boat"]
+position = Vector2(722, 492)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boat/SeatArea0"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="SeatArea1" type="Area2D" parent="Boat"]
+position = Vector2(886, 494)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boat/SeatArea1"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_23cw1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("PersonInfo")]
+script = ExtResource("16_8y2ri")
+PersonInfo = NodePath("PersonInfo")
 
 [node name="PersonInfo" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("TextLabel")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("16_5xqfk")
 TextLabel = NodePath("RichTextLabel")
 
@@ -87,8 +178,24 @@ offset_right = 1597.0
 offset_bottom = 251.0
 bbcode_enabled = true
 
-[editable path="Left/Father"]
-[editable path="Left/Mother"]
-[editable path="Left/Brother"]
-[editable path="Left/Sister"]
-[editable path="Left/Other"]
+[node name="GameInfo" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/GameInfo"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 24
+text = "鼠标左键交互，右键查看信息"
+
+[editable path="Left/Area1/Father"]
+[editable path="Left/Area2/Mother"]
+[editable path="Left/Area3/Brother"]
+[editable path="Left/Area4/Sister"]
+[editable path="Left/Area5/Other"]

@@ -1,4 +1,5 @@
 using System.Linq;
+using Godot;
 using static Constants;
 
 public partial class Boat : Container
@@ -21,4 +22,5 @@ public partial class Boat : Container
 	{
 		return PeopleInContainer.Count > 0 && PeopleInContainer.Any(p => p.CanDriveBoat);
 	}
+	
 }

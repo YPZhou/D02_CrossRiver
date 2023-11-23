@@ -1,20 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://882w6fcmrut6"]
+[gd_scene load_steps=3 format=3 uid="uid://882w6fcmrut6"]
 
 [ext_resource type="Script" path="res://Scripts/Person/Person.cs" id="1_y54n0"]
 [ext_resource type="Texture2D" uid="uid://hr5t3pykomrl" path="res://icon.svg" id="2_5cx00"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_23cw1"]
-size = Vector2(128, 128)
-
-[node name="PersonNode" type="Node2D" node_paths=PackedStringArray("clickArea")]
+[node name="PersonNode" type="Node2D" node_paths=PackedStringArray("ClickArea")]
 script = ExtResource("1_y54n0")
-clickArea = NodePath("Area2D")
+ClickArea = NodePath("")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("2_5cx00")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2, 1)
-shape = SubResource("RectangleShape2D_23cw1")
