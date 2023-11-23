@@ -1,5 +1,7 @@
 ﻿
+using System;
 using Godot;
+using GodotPlugins.Game;
 
 public class InteractManager
 {
@@ -26,26 +28,28 @@ public class InteractManager
             return;
         }
         
-
         area2D.InputEvent += (viewport, @event, idx) =>
         {
-            if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false} e)
+            if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Left})
             {
-                switch (e.ButtonIndex)
+                // 鼠标左键乘船。
+                if (!area2D.TryGetPerson(out var person))
                 {
-                    case MouseButton.Left: // 左键交互，乘船。
-                        
-                        
-                        
-                        break;
-                    case MouseButton.Right: // 右键查看信息。
-
-                        break;
+                    return;
                 }
+
+                MainGame.Instance.Left.MoveOut(person);
+                MainGame.Instance.Boat.TryMoveIn(person);
+
             }
+            
+            if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Right})
+            {
+            }
+            
         };
     }
-
+    
 
     public void LoginRightAreaInput(Area2D area2D)
     {
@@ -55,6 +59,43 @@ public class InteractManager
 
     public void LoginBoatAreaInput(Area2D area2D)
     {
+        
+        if (area2D == null)
+        {
+            return;
+        }
+        
+        area2D.InputEvent += (viewport, @event, idx) =>
+        {
+            if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Left})
+            {
+                if (!area2D.TryGetPerson(out var person))
+                {
+                    return;
+                }
+                
+                MainGame.Instance.Left.MoveOut(person);
+
+                if (MainGame.Instance.Boat.State == Constants.BoatState.Left)
+                {
+                    MainGame.Instance.Left.TryMoveIn(person);
+                }
+                else
+                {
+                    MainGame.Instance.Right.TryMoveIn(person);
+                }
+
+            }
+            
+            if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Right})
+            {
+            }
+            
+        };
+        
     }
+
+
+    
 
 }

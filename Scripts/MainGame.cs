@@ -10,7 +10,7 @@ public partial class MainGame : Node
 	[Export]
 	public Container Left { get; private set; }
 	[Export]
-	public Container Boat { get; private set; }
+	public Boat Boat { get; private set; }
 	[Export]
 	public Container Right { get; private set; }
 
@@ -21,7 +21,15 @@ public partial class MainGame : Node
 		
 		for (var i = 0; i < Left.Areas.Count; ++i)
 		{
-			InteractManager.Instance.LoginLeftAreaInput(Left.Areas[i]);
+			var area2D = Left.Areas[i];
+			InteractManager.Instance.LoginLeftAreaInput(area2D);
+
+			if (!area2D.TryGetPerson(out var person))
+			{
+				continue;
+			}
+			person.GetParent().RemoveChild(person);
+			Left.TryMoveIn(person);
 		}
 		
 		for (var i = 0; i < Right.Areas.Count; ++i)

@@ -21,6 +21,13 @@ public static class Constants
 		MoveBoat,
 		EroScene,
 	}
+	
+	
+	public enum BoatState
+	{
+		Left,
+		Right
+	}
 
 	public const int MAX_BOAT_CAPACITY = 2;
 }

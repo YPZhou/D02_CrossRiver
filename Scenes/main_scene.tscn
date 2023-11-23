@@ -176,6 +176,7 @@ TextLabel = NodePath("RichTextLabel")
 layout_mode = 0
 offset_right = 1597.0
 offset_bottom = 251.0
+mouse_filter = 2
 bbcode_enabled = true
 
 [node name="GameInfo" type="Control" parent="CanvasLayer"]

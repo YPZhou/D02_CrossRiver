@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/Person/Person.cs" id="1_y54n0"]
 [ext_resource type="Texture2D" uid="uid://hr5t3pykomrl" path="res://icon.svg" id="2_5cx00"]
 
-[node name="PersonNode" type="Node2D" node_paths=PackedStringArray("ClickArea")]
+[node name="PersonNode" type="Node2D"]
 script = ExtResource("1_y54n0")
-ClickArea = NodePath("")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("2_5cx00")

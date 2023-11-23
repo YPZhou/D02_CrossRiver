@@ -18,6 +18,9 @@ public partial class Container : Node
 		if (result)
 		{
 			PeopleInContainer.Add(person);
+			var index = PeopleInContainer.Count - 1;
+			Areas[index].AddChild(person);
+			person.GlobalPosition = Areas[index].GlobalPosition;
 		}
 		return result;
 	}
@@ -25,6 +28,7 @@ public partial class Container : Node
 	public void MoveOut(Person person)
 	{
 		PeopleInContainer.Remove(person);
+		person.GetParent().RemoveChild(person);
 	}
 
 	protected List<Person> PeopleInContainer { get; } = new List<Person>();
@@ -42,4 +46,5 @@ public partial class Container : Node
 	public Array<Area2D> Areas { get; private set; }
 
 	public int Capacity => Areas.Count;
+
 }
