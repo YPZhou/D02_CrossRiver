@@ -84,6 +84,8 @@ public partial class MainGame : Node
 		{
 			InteractManager.Instance.LoginBoatAreaInput(Boat.Areas[i]);
 		}
+		//注册开船按钮
+		InteractManager.Instance.LoginBoatAreaInput(Boat.DriveBoat);
 	}
 
 

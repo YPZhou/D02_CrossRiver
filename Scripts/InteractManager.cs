@@ -30,9 +30,10 @@ public class InteractManager
         
         area2D.InputEvent += (viewport, @event, idx) =>
         {
+            //如果船不在左边，左边的角色不能上船
             if (MainGame.Instance.Boat.State != Constants.BoatState.Left)
                 return;
-            
+
             // 鼠标左键乘船。
             if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Left})
             {
@@ -64,6 +65,7 @@ public class InteractManager
         
         area2D.InputEvent += (viewport, @event, idx) =>
         {
+            //如果船不在右边，右边的角色不能上船
             if (MainGame.Instance.Boat.State != Constants.BoatState.Right)
                 return;
 

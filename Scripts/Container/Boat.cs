@@ -47,4 +47,8 @@ public partial class Boat : Container
 
 	[Export]
 	Sprite2D boatSprite;
+
+	//开船按钮单独设置
+	[Export]
+	public Area2D DriveBoat;
 }
