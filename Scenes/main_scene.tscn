@@ -167,10 +167,9 @@ position = Vector2(1327, 753)
 position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_23cw1")
 
-[node name="Boat" type="Node" parent="." node_paths=PackedStringArray("boatSprite", "DriveBoat", "animationPlayer", "Areas")]
+[node name="Boat" type="Node" parent="." node_paths=PackedStringArray("boatSprite", "animationPlayer", "Areas")]
 script = ExtResource("8_rmbui")
 boatSprite = NodePath("BoatSprite")
-DriveBoat = NodePath("")
 animationPlayer = NodePath("AnimationPlayer")
 Areas = [NodePath("BoatSprite/SeatArea0"), NodePath("BoatSprite/SeatArea1")]
 
