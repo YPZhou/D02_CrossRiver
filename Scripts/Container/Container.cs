@@ -1,6 +1,6 @@
-using Godot;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Godot.Collections;
 
 public partial class Container : Node
@@ -8,6 +8,11 @@ public partial class Container : Node
 	public bool CheckConstraintsNotViolated()
 	{
 		return Constraints.Any(c => c.CheckConstraintViolated(PeopleInContainer));
+	}
+
+	public IEnumerable<IConstraint> GetViolatedConstraints()
+	{
+		return Constraints.Where(c => c.CheckConstraintViolated(PeopleInContainer));
 	}
 
 	public virtual bool CanMoveIn() => true;
