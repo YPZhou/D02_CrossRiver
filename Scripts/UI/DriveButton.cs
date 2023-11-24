@@ -7,7 +7,7 @@ public partial class DriveButton : Button
     {
         ButtonDown += () =>
         {
-            MainGame.Instance.Boat.MoveBoat();
+            MainGame.Instance.MoveBoat();
         };
     }
 
