@@ -16,7 +16,7 @@ public partial class Person : Node2D
 	public bool TryMove(Container to)
 	{
 		var result = false;
-		if (to.TryMoveIn(this))
+		if (currentLocation != to && to.TryMoveIn(this))
 		{
 			currentLocation?.MoveOut(this);
 			currentLocation = to;

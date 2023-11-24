@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Godot.Collections;
+using static Constants;
 
 public partial class Container : Node
 {
 	public bool CheckConstraintsNotViolated()
 	{
-		return Constraints.Any(c => c.CheckConstraintViolated(PeopleInContainer));
+		return Constraints.All(c => !c.CheckConstraintViolated(PeopleInContainer));
 	}
 
 	public IEnumerable<IConstraint> GetViolatedConstraints()
@@ -51,6 +52,13 @@ public partial class Container : Node
 			PeopleInContainer[index] = null;
 		}
 	}
+
+	public bool HasAllPeople() => PeopleInContainer.Count(p => p != null) == 5
+								&& PeopleInContainer.Count(p => p != null && p.PersonType == PersonType.Father) == 1
+								&& PeopleInContainer.Count(p => p != null && p.PersonType == PersonType.Mother) == 1
+								&& PeopleInContainer.Count(p => p != null && p.PersonType == PersonType.Brother) == 1
+								&& PeopleInContainer.Count(p => p != null && p.PersonType == PersonType.Sister) == 1
+								&& PeopleInContainer.Count(p => p != null && p.PersonType == PersonType.Other) == 1;
 
 	protected Person[] PeopleInContainer { get; private set; }
 

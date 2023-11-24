@@ -48,11 +48,21 @@ public partial class MainGame : Node
 					&& Boat.CheckConstraintsNotViolated())
 				{
 					Boat.MoveBoat();
-					gameState = GameState.LoadBoat;					
+
+					if (IsGameWin())
+					{
+						Messager.Instance.ShowMessage("游戏胜利！", Callable.From(() =>
+						{
+							InitGame();
+						}));
+					}
+
+					gameState = GameState.LoadBoat;
 				}
 				else
 				{
 					gameState = GameState.EroScene;
+					GD.Print("Invalid Move");
 				}
 
 				break;
@@ -74,7 +84,7 @@ public partial class MainGame : Node
 					Messager.Instance.ShowMessage($"船上 条件{constraint}不满足，游戏失败！");
 				}
 
-				Boat.MoveBoat();
+				InitGame();
 				gameState = GameState.LoadBoat;
 				break;
 		}
@@ -114,6 +124,7 @@ public partial class MainGame : Node
 
 	void InitPeople()
 	{
+		GD.Print("Init Game");
 		var people = GetNode("People");
 		for (var i = 0; i < people.GetChildCount(); ++i)
 		{
@@ -122,4 +133,14 @@ public partial class MainGame : Node
 		}
 	}
 
+	void InitGame()
+	{
+		InitPeople();
+		if (Boat.State == BoatState.Right)
+		{
+			Boat.MoveBoat();
+		}
+	}
+
+	bool IsGameWin() => Right.HasAllPeople();
 }
