@@ -30,12 +30,9 @@ public class InteractManager
         
         area2D.InputEvent += (viewport, @event, idx) =>
         {
-            //如果船不在左边，左边的角色不能上船
-            if (MainGame.Instance.Boat.State != Constants.BoatState.Left)
-                return;
-
             // 鼠标左键乘船。
-            if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Left})
+            if (MainGame.Instance.Boat.State == Constants.BoatState.Left  //如果船不在左边，左边的角色不能上船
+                && @event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Left})
             {
                 var left = MainGame.Instance.Left;
                 // 获取点击的索引。
@@ -65,12 +62,10 @@ public class InteractManager
         
         area2D.InputEvent += (viewport, @event, idx) =>
         {
-            //如果船不在右边，右边的角色不能上船
-            if (MainGame.Instance.Boat.State != Constants.BoatState.Right)
-                return;
-
+            
             // 鼠标左键乘船。
-            if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Left})
+            if (MainGame.Instance.Boat.State == Constants.BoatState.Right //如果船不在右边，右边的角色不能上船
+				&&@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Left})
             {
                 var right = MainGame.Instance.Right;
                 // 获取点击的索引。

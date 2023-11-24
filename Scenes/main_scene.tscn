@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmg7hew6mopv4"]
+[gd_scene load_steps=24 format=3 uid="uid://dmg7hew6mopv4"]
 
 [ext_resource type="Script" path="res://Scripts/Container/Container.cs" id="1_1qmhc"]
 [ext_resource type="PackedScene" uid="uid://882w6fcmrut6" path="res://Scenes/person.tscn" id="1_2vome"]
@@ -18,9 +18,71 @@
 [ext_resource type="Texture2D" uid="uid://c5ygalnugsraq" path="res://Assets/boat.png" id="15_k56oy"]
 [ext_resource type="Script" path="res://Scripts/UI/PersonInfo.cs" id="16_5xqfk"]
 [ext_resource type="Script" path="res://Scripts/UIManager.cs" id="16_8y2ri"]
+[ext_resource type="Script" path="res://Scripts/UI/DriveButton.cs" id="19_n8pjf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23cw1"]
 size = Vector2(128, 128)
+
+[sub_resource type="Animation" id="Animation_1h41g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoatSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(502, 547)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CanvasLayer/GameInfo/DriveButton:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(467, 598)]
+}
+
+[sub_resource type="Animation" id="Animation_uwgt4"]
+resource_name = "moving_right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoatSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(502, 547), Vector2(1000, 547)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CanvasLayer/GameInfo/DriveButton:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(467, 598), Vector2(971, 598)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r8tl3"]
+_data = {
+"RESET": SubResource("Animation_1h41g"),
+"moving_right": SubResource("Animation_uwgt4")
+}
 
 [node name="MainScene" type="Node" node_paths=PackedStringArray("Left", "Boat", "Right")]
 script = ExtResource("1_t5kp2")
@@ -113,7 +175,7 @@ DriveBoat = NodePath("BoatSprite/DriveBoat")
 Areas = [NodePath("BoatSprite/SeatArea0"), NodePath("BoatSprite/SeatArea1")]
 
 [node name="BoatSprite" type="Sprite2D" parent="Boat"]
-position = Vector2(500, 547)
+position = Vector2(502, 547)
 texture = ExtResource("15_k56oy")
 
 [node name="SeatArea0" type="Area2D" parent="Boat/BoatSprite"]
@@ -131,7 +193,8 @@ position = Vector2(-2, 1)
 shape = SubResource("RectangleShape2D_23cw1")
 
 [node name="DriveBoat" type="Area2D" parent="Boat/BoatSprite"]
-position = Vector2(0, 60)
+visible = false
+position = Vector2(0, 58)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boat/BoatSprite/DriveBoat"]
 position = Vector2(-2, 1)
@@ -139,6 +202,11 @@ shape = SubResource("RectangleShape2D_23cw1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Boat/BoatSprite/DriveBoat"]
 texture = ExtResource("5_j4wft")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Boat"]
+libraries = {
+"": SubResource("AnimationLibrary_r8tl3")
+}
 
 [node name="People" type="Node" parent="."]
 
@@ -214,6 +282,17 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 24
 text = "鼠标左键交互，右键查看信息"
+
+[node name="DriveButton" type="Button" parent="CanvasLayer/GameInfo"]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 598.0
+offset_right = 535.0
+offset_bottom = 648.0
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "开船"
+script = ExtResource("19_n8pjf")
 
 [editable path="People/Father"]
 [editable path="People/Mother"]

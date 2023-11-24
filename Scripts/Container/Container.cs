@@ -23,7 +23,12 @@ public partial class Container : Node
 		if (index != -1)
 		{
 			PeopleInContainer[index] = person;
-			person.GlobalPosition = Areas[index].GlobalPosition;
+			
+			// 渐变
+			//person.GlobalPosition = Areas[index].GlobalPosition;
+			var tween = GetTree().CreateTween();
+			tween.TweenProperty(person, "global_position", Areas[index].GlobalPosition, 0.15d);
+			
 			return true;
 		}
 
