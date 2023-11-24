@@ -1,12 +1,18 @@
 using Godot;
-using System;
 
 public partial class Messager : Control
 {
 	[Export]
 	public Label Message;
 
+	public static Messager Instance;
+
 	private Callable Callable = default;
+
+	public override void _EnterTree()
+	{
+		Instance = this;
+	}
 
 	public void _on_btn_ok_pressed()
 	{

@@ -61,17 +61,17 @@ public partial class MainGame : Node
 
 				foreach (var constraint in Left.GetViolatedConstraints())
 				{
-					GD.Print($"左岸 条件{constraint}不满足，游戏失败！");
+					Messager.Instance.ShowMessage($"左岸 条件{constraint}不满足，游戏失败！");
 				}
 
 				foreach (var constraint in Right.GetViolatedConstraints())
 				{
-					GD.Print($"右岸 条件{constraint}不满足，游戏失败！");
+					Messager.Instance.ShowMessage($"右岸 条件{constraint}不满足，游戏失败！");
 				}
 
 				foreach (var constraint in Boat.GetViolatedConstraints())
 				{
-					GD.Print($"船上 条件{constraint}不满足，游戏失败！");
+					Messager.Instance.ShowMessage($"船上 条件{constraint}不满足，游戏失败！");
 				}
 
 				Boat.MoveBoat();
