@@ -288,6 +288,8 @@ script = ExtResource("19_n8pjf")
 visible = false
 
 [node name="DialogBubble" parent="." instance=ExtResource("20_7jhuh")]
+
+[node name="Bubble" parent="DialogBubble" index="0"]
 visible = false
 
 [connection signal="button_down" from="CanvasLayer/GameInfo/DriveButton" to="." method="MoveBoat"]
@@ -297,3 +299,4 @@ visible = false
 [editable path="People/Brother"]
 [editable path="People/Sister"]
 [editable path="People/Other"]
+[editable path="DialogBubble"]

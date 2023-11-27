@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/UI/DialogBubble.cs" id="1_htwop"]
 
-[node name="DialogBubble" type="Control" node_paths=PackedStringArray("Message", "Arrow_L", "Arrow_R", "Arrow_D")]
+[node name="DialogBubble" type="Control" node_paths=PackedStringArray("Message", "Bubble", "Arrow_L", "Arrow_R", "Arrow_D")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_htwop")
 Message = NodePath("Bubble/Messge")
+Bubble = NodePath("Bubble")
 Arrow_L = NodePath("Bubble/Arrow_L")
 Arrow_R = NodePath("Bubble/Arrow_R")
 Arrow_D = NodePath("Bubble/Arrow_D")

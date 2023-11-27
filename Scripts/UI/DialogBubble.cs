@@ -8,6 +8,8 @@ public partial class DialogBubble : Control
 	[Export]
 	public Label Message;
 	[Export]
+	public ColorRect Bubble;
+	[Export]
 	public ColorRect Arrow_L;
 	[Export]
 	public ColorRect Arrow_R;
@@ -15,6 +17,9 @@ public partial class DialogBubble : Control
 	public ColorRect Arrow_D;
 
 	private DialogBubbleState dialogBubbleState = DialogBubbleState.None;
+
+	private SceneTreeTimer sceneTreeTimer;
+	private int callCount;
 
 	public static DialogBubble Instance;
 	
@@ -26,12 +31,14 @@ public partial class DialogBubble : Control
 
 	public void ShowBubble(string message, DialogBubbleState arrowState, Node2D node)
 	{
+		sceneTreeTimer = null;
+		callCount++;
 		Message.Text = message;
 		dialogBubbleState = arrowState;
 		
 		SetPos(node);
 		UpdateDialogBubble();
-		HideDialogBubble(1);
+		HideDialogBubble(1.5f);
 	}
 
 	public void HideBubble()
@@ -44,8 +51,17 @@ public partial class DialogBubble : Control
 
 	public async void HideDialogBubble(float time = 1.0f)
 	{
-		await ToSignal(GetTree().CreateTimer(time), SceneTreeTimer.SignalName.Timeout);
-		HideBubble();
+		if(sceneTreeTimer != null)
+		{
+			return;
+		}
+		int temp = callCount;
+		sceneTreeTimer = GetTree().CreateTimer(time);
+		await ToSignal(sceneTreeTimer, SceneTreeTimer.SignalName.Timeout);
+		if(temp == callCount)
+		{
+			HideBubble();
+		}
 	}
 
 	private void UpdateDialogBubble()
@@ -53,11 +69,11 @@ public partial class DialogBubble : Control
 		Arrow_L.Hide();
 		Arrow_R.Hide();
 		Arrow_D.Hide();
-		Hide();
+		Bubble.Hide();
 		if(dialogBubbleState == DialogBubbleState.None)
 			return;
 
-		Show();
+		Bubble.Show();
 		if(dialogBubbleState == DialogBubbleState.Left)
 			Arrow_L.Show();
 		else if(dialogBubbleState == DialogBubbleState.Right)
@@ -76,12 +92,12 @@ public partial class DialogBubble : Control
 		if(dialogBubbleState == DialogBubbleState.Left)
 		{
 			Vector2 newV2 = new Vector2(128 + v2.X, v2.Y - 64);
-			GlobalPosition = newV2;
+			Bubble.Position = newV2;
 		}
 		else if(dialogBubbleState == DialogBubbleState.Right)
 		{
-			Vector2 newV2 = new Vector2(v2.X - 128 - Size.X, v2.Y - 64);
-			GlobalPosition = newV2;
+			Vector2 newV2 = new Vector2(v2.X - 128 - Bubble.Size.X, v2.Y - 64);
+			Bubble.Position = newV2;
 		}
 
 	}
