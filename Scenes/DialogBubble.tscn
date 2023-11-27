@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwoglkq8fopjo"]
+
+[ext_resource type="Script" path="res://Scripts/UI/DialogBubble.cs" id="1_htwop"]
+
+[node name="DialogBubble" type="Control" node_paths=PackedStringArray("Message", "Arrow_L", "Arrow_R", "Arrow_D")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_htwop")
+Message = NodePath("Bubble/Messge")
+Arrow_L = NodePath("Bubble/Arrow_L")
+Arrow_R = NodePath("Bubble/Arrow_R")
+Arrow_D = NodePath("Bubble/Arrow_D")
+
+[node name="Bubble" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 128.0
+
+[node name="Messge" type="Label" parent="Bubble"]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "测试文本"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Arrow_L" type="ColorRect" parent="Bubble"]
+visible = false
+layout_mode = 0
+offset_left = -16.0
+offset_top = 64.0
+offset_right = 16.0
+offset_bottom = 96.0
+rotation = -0.785398
+
+[node name="Arrow_R" type="ColorRect" parent="Bubble"]
+visible = false
+layout_mode = 0
+offset_left = 160.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 96.0
+rotation = -0.785398
+
+[node name="Arrow_D" type="ColorRect" parent="Bubble"]
+visible = false
+layout_mode = 0
+offset_left = 72.0
+offset_top = 120.0
+offset_right = 104.0
+offset_bottom = 152.0
+rotation = -0.785398

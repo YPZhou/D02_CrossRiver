@@ -72,7 +72,11 @@ public class InteractManager
 			    if (origin.TryGetPerson(index, out var person))
 			    {
 				    // 移动到船容器。
-				    person.TryMove(GetTo());
+				    bool result = person.TryMove(GetTo());
+					if(!result)
+					{
+						DialogBubble.Instance.ShowBubble("船满了", person.GlobalPosition.X < 800 ? Constants.DialogBubbleState.Left : Constants.DialogBubbleState.Right, person);
+					}
 			    }
 		    }
             

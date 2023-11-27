@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dmg7hew6mopv4"]
+[gd_scene load_steps=25 format=3 uid="uid://dmg7hew6mopv4"]
 
 [ext_resource type="Script" path="res://Scripts/Container/Container.cs" id="1_1qmhc"]
 [ext_resource type="PackedScene" uid="uid://882w6fcmrut6" path="res://Scenes/person.tscn" id="1_2vome"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://Scripts/UIManager.cs" id="16_8y2ri"]
 [ext_resource type="PackedScene" uid="uid://0d1pdqhm3w5l" path="res://Scenes/Messager.tscn" id="19_k2ybh"]
 [ext_resource type="Script" path="res://Scripts/UI/DriveButton.cs" id="19_n8pjf"]
+[ext_resource type="PackedScene" uid="uid://dwoglkq8fopjo" path="res://Scenes/DialogBubble.tscn" id="20_7jhuh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23cw1"]
 size = Vector2(128, 128)
@@ -284,6 +285,9 @@ text = "开船"
 script = ExtResource("19_n8pjf")
 
 [node name="Messager" parent="." instance=ExtResource("19_k2ybh")]
+visible = false
+
+[node name="DialogBubble" parent="." instance=ExtResource("20_7jhuh")]
 visible = false
 
 [connection signal="button_down" from="CanvasLayer/GameInfo/DriveButton" to="." method="MoveBoat"]

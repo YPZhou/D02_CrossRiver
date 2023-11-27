@@ -30,4 +30,13 @@ public static class Constants
 	}
 
 	public const int MAX_BOAT_CAPACITY = 2;
+
+	public enum DialogBubbleState
+	{
+		None,
+		Left,
+		Right,
+		Down,
+
+	}
 }
