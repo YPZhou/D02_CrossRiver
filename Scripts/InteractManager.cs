@@ -66,6 +66,8 @@ public class InteractManager
 		    // 鼠标左键乘船。
 		    if (Condition() && @event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Left})
 		    {
+				audioManager.PlaySE("001-System01");
+
 			    // 获取点击的索引。
 			    var index = origin.Areas.IndexOf(area2D);
 			    // 根据索引找到对应的人物.
@@ -82,10 +84,11 @@ public class InteractManager
             
 		    if (@event is InputEventMouseButton {Pressed: true, DoubleClick: false, ButtonIndex:MouseButton.Right})
 		    {
+				audioManager.PlaySE("001-System01");
 		    }
             
 	    };
     }
     
-
+	private AudioManager audioManager => MainGame.Instance.GetNode<AudioManager>("/root/AudioManager");
 }
